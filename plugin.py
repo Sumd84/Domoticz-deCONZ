@@ -374,6 +374,14 @@ class BasePlugin:
                             IEEE2 = Devices[Unit].DeviceID.replace('_mode','_heatsetpoint')
                             Hp = int(100*float(Devices[GetDomoDeviceInfo(IEEE2)].sValue))
                             _json['heatsetpoint'] = Hp
+                    #Music_Sync
+                    elif device_type == 'Music_Sync':
+                        if Level == 10
+                            _json['music_sync'] = True
+                        else
+                            _json['music_sync'] = False
+                        #retreive previous 
+                        _type,deCONZ_ID = self.GetDevicedeCONZ(Devices[Unit].DeviceID.replace("_effect",""))
                     #Chritsmas tree
                     elif Devices[Unit].DeviceID.endswith('_effect'):
                         v = ["none","steady","snow","rainbow","snake","twinkle","fireworks","flag","waves","updown","vintage","fading","collide","strobe","sparkles","carnival","glow"][int(Level/10) - 1]

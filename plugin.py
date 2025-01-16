@@ -735,6 +735,12 @@ class BasePlugin:
                 #Correction
                 self.Devices[IEEE]['colormode'] = 'xy'
                 Type = 'Extended color light'
+            # Aqara LED Strip T1
+            if Model == 'lumi.light.acn132':
+                #Create a widget for effect
+                self.Devices[IEEE + "_effect"] = {'id' : key , 'type' : 'config' , 'state' : 'working' , 'model' : 'Music_Sync' }
+                self.CreateIfnotExist(IEEE + "_effect",'Music_Sync',Name)
+                Type = 'Extended color light'
             #Special devices
             if Type == 'ZHAThermostat':
                 # Not working for cable outlet yet.

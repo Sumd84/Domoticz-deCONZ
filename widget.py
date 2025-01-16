@@ -291,7 +291,14 @@ def Createdatawidget(IEEE, _Name, _Type, opt):
         kwarg['Switchtype'] = 18
         kwarg['Image'] = 14
         kwarg['Options'] = {"LevelActions": "||||||||||||||||", "LevelNames": "off|none|steady|snow|rainbow|snake|twinkle|fireworks|flag|waves|updown|vintage|fading|collide|strobe|sparkles|carnival|glow", "LevelOffHidden": "true", "SelectorStyle": "1"}
-
+    
+    elif _Type == 'Music_Sync':
+        kwarg['Type'] = 244
+        kwarg['Subtype'] = 62
+        kwarg['Switchtype'] = 18
+        kwarg['Image'] = 14
+        kwarg['Options'] = {"LevelActions": "||", "LevelNames": "Off|On", "LevelOffHidden": "true", "SelectorStyle": "0"}
+    
     elif _Type == 'Vibration_Orientation':
         kwarg['Type'] = 243
         kwarg['Subtype'] = 19

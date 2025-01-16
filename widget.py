@@ -297,7 +297,7 @@ def Createdatawidget(IEEE, _Name, _Type, opt):
         kwarg['Subtype'] = 62
         kwarg['Switchtype'] = 18
         kwarg['Image'] = 14
-        kwarg['Options'] = {"LevelActions": "||", "LevelNames": "Off|On", "LevelOffHidden": "true", "SelectorStyle": "0"}
+        kwarg['Options'] = {"LevelActions": "||", "LevelNames": "Off|On", "LevelOffHidden": "false", "SelectorStyle": "0"}
     
     elif _Type == 'Vibration_Orientation':
         kwarg['Type'] = 243

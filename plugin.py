@@ -375,14 +375,22 @@ class BasePlugin:
                             IEEE2 = Devices[Unit].DeviceID.replace('_mode','_heatsetpoint')
                             Hp = int(100*float(Devices[GetDomoDeviceInfo(IEEE2)].sValue))
                             _json['heatsetpoint'] = Hp
-                    #Music_Sync
-                    elif device_type == 'Music_Sync':
-                        if Level == 10
-                            _json['music_sync'] = True
-                        else
+                    #Aqara LED Strip T1 music sync
+                    elif device_type == 'LedStripT1_MusicSync':
+                        if ((Level == 0) or (Level == 10)):
                             _json['music_sync'] = False
-                        #retreive previous 
-                        _type,deCONZ_ID = self.GetDevicedeCONZ(Devices[Unit].DeviceID.replace("_effect",""))
+                        else:
+                            _json['music_sync'] = True
+                            _json['music_sync_effect'] = int(Level/10) - 2
+                        # Get light device
+                        _type = 'lights'
+                        dummy,deCONZ_ID = self.GetDevicedeCONZ(Devices[Unit].DeviceID.replace("_MusicSync",""))
+                    #Aqara LED Strip T1 segments config
+                    elif device_type == 'LedStripT1_Segments':
+                        # Set segments as 20cm segment number from 0m to 10m (1 to 50)
+                        _json['segments'] = int(Level / 2)
+                        _type = 'gradient'
+                        dummy,deCONZ_ID = self.GetDevicedeCONZ(Devices[Unit].DeviceID.replace("_Segments",""))
                     #Chritsmas tree
                     elif Devices[Unit].DeviceID.endswith('_effect'):
                         v = ["none","steady","snow","rainbow","snake","twinkle","fireworks","flag","waves","updown","vintage","fading","collide","strobe","sparkles","carnival","glow"][int(Level/10) - 1]
@@ -516,6 +524,8 @@ class BasePlugin:
             url = url + '/state'
         elif _type == 'config':
             url = '/api/' + Parameters["Mode2"] + '/sensors/' + str(deCONZ_ID) + '/config'
+        elif _type == 'gradient':
+            url = '/api/' + Parameters["Mode2"] + '/lights/' + str(deCONZ_ID) + '/config/color/gradient'
         elif _type == 'scenes':
             url = '/api/' + Parameters["Mode2"] + '/groups/' + deCONZ_ID.split('/')[0] + '/scenes/' + deCONZ_ID.split('/')[1] + '/recall'
             _json = {} # to force PUT
@@ -746,9 +756,13 @@ class BasePlugin:
                 Type = 'Extended color light'
             # Aqara LED Strip T1
             if Model == 'lumi.light.acn132':
-                #Create a widget for effect
-                self.Devices[IEEE + "_effect"] = {'id' : key , 'type' : 'config' , 'state' : 'working' , 'model' : 'Music_Sync' }
-                self.CreateIfnotExist(IEEE + "_effect",'Music_Sync',Name)
+                #Create a widget for music sync
+                self.Devices[IEEE + "_MusicSync"] = {'id' : key , 'type' : 'config' , 'state' : 'working' , 'model' : 'LedStripT1_MusicSync' }
+                self.CreateIfnotExist(IEEE + "_MusicSync",'LedStripT1_MusicSync',Name)
+                #Create a widget for segments
+                self.Devices[IEEE + "_Segments"] = {'id' : key , 'type' : 'config' , 'state' : 'working' , 'model' : 'LedStripT1_Segments' }
+                self.CreateIfnotExist(IEEE + "_Segments",'LedStripT1_Segments',Name)
+                #Treat as a RGBWWCW dimmer
                 Type = 'Extended color light'
             #Special devices
             if Type == 'ZHAThermostat':

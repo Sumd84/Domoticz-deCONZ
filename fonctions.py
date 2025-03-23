@@ -874,19 +874,19 @@ def ButtonconvertionXCUBEPROT1(val, gesture):
     v = 0
 
     if gest == 0:             # wake
-        v = 20
+        v = 70
     elif gest == 1:           # shake
-        v = 10
+        v = 80
     elif gest == 2:           # Free Fall
-        v = 30
+        v = 110
     elif gest == 3:           # 90 flip
-        v = 40 + int(face[0]) #add face up number
+        v = int(face[0]) * 10 #add face up number
     elif gest == 4:           # 180 flip
-        v = 50 + int(face[0]) #add face up number
+        v = int(face[0]) * 10 #add face up number
     elif gest == 5:           # push
-        v = 60 + int(face[0]) #add face up number
+        v = 90
     elif gest == 6:           # double tap
-        v = 70 + int(face[0]) #add face up number
+        v = 100
     else:# Unknown
         v = 0
 

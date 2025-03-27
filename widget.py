@@ -302,18 +302,6 @@ def Createdatawidget(IEEE, _Name, _Type, opt):
         kwarg['Switchtype'] = 18
         kwarg['Image'] = 14
         kwarg['Options'] = {"LevelActions": "||||||||||||||||", "LevelNames": "off|none|steady|snow|rainbow|snake|twinkle|fireworks|flag|waves|updown|vintage|fading|collide|strobe|sparkles|carnival|glow", "LevelOffHidden": "true", "SelectorStyle": "1"}
-    # Widget for Aqara Led strip T1 music effect
-    elif _Type == 'LedStripT1_MusicSync':
-        kwarg['Type'] = 244
-        kwarg['Subtype'] = 62
-        kwarg['Switchtype'] = 18
-        kwarg['Image'] = 14
-        kwarg['Options'] = {"LevelActions": "||||||", "LevelNames": "Off|None|Breathing|Rainbow|Chasing|Random", "LevelOffHidden": "true", "SelectorStyle": "0"}
-    # Widget for Aqara Led strip T1 segments configuration
-    elif _Type == 'LedStripT1_Segments':
-        kwarg['Type'] = 244
-        kwarg['Subtype'] = 73
-        kwarg['Switchtype'] = 7
 
     elif _Type == 'Vibration_Orientation':
         kwarg['Type'] = 243

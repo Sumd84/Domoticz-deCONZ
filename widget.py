@@ -265,10 +265,6 @@ def Createdatawidget(IEEE, _Name, _Type, opt):
         kwarg['Image'] = 9
         kwarg['Options'] = {"LevelActions": "||||||||||||", "LevelNames": "Off|F1|F2|F3|F4|F5|F6|Wake|Shake|Push|Tap|Drop", "LevelOffHidden": "true", "SelectorStyle": "0"}
 
-    elif _Type == 'XCubeProT1_Face':
-        kwarg['TypeName'] = 'Custom'
-        kwarg['Options'] = {"Custom": ("1")}
-
     elif _Type == 'XCube_R':
         kwarg['TypeName'] = 'Custom'
         kwarg['Options'] = {"Custom": ("1;degree")}
